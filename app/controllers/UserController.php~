@@ -1,0 +1,114 @@
+<?php
+
+class UserController extends \BaseController {
+
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return Response
+	 */
+	 
+	public function logout(){
+		$userObj = new User();
+		$logout_status = $userObj->logout();
+		$logout_obj = json_decode($logout_status);
+		if(isset($logout_obj->success)){
+			return Redirect::to('/')->with('error', $logout_obj->success);
+			return json_encode(array('success' => $logout_obj->success));
+		} else if(isset($logout_obj->error)){
+			return json_encode(array('error' => $logout_obj->error));
+		} else {
+			return json_encode(array('error' => 'Something went wrong. Can\'t logout'));
+		}
+	}
+	
+	public function createSession($username){
+		$userObj = new User();
+		$session_status = $userObj->createSession($username);
+		$session_obj = json_decode($session_status);
+		if(isset($session_obj->success)){
+			return json_encode(array('success' => $session_obj->success));
+		} else if(isset($logout_obj->error)){
+			return json_encode(array('error' => $session_obj->error));
+		} else {
+			return json_encode(array('error' => 'Something went wrong. Session not created'));
+		}
+	}
+	
+	public function index()
+	{
+		//
+	}
+
+
+	/**
+	 * Show the form for creating a new resource.
+	 *
+	 * @return Response
+	 */
+	public function create()
+	{
+		//
+	}
+
+
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @return Response
+	 */
+	public function store()
+	{
+		//
+	}
+
+
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function show($id)
+	{
+		//
+	}
+
+
+	/**
+	 * Show the form for editing the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function edit($id)
+	{
+		//
+	}
+
+
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function update($id)
+	{
+		//
+	}
+
+
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function destroy($id)
+	{
+		//
+	}
+
+
+}
